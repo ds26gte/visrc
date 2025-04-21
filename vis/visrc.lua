@@ -1,4 +1,4 @@
--- last modified 2025-04-20
+-- last modified 2025-04-21
 -- created 2025-04-18
 
 require('vis')
@@ -49,7 +49,8 @@ end)
 -- from vis api doc
 vis:operator_new('gq', function(file, range)
   local ideal_text_width = 66
-  local status, out, err = vis:pipe(file, range, 'fmtp ' .. ideal_text_width)
+  local status, out, err = vis:pipe(file, range,
+    'fmt -w ' .. ideal_text_width .. ' | sed -e "s/\\(\\S\\)\\s\\+/\\1 /g"')
   if status ~= 0 then
     vis:info(err)
   else

@@ -1,5 +1,6 @@
--- last modified 2025-04-20
+-- last modified 2025-04-21
 -- created 2025-04-19
+-- Dorai Sitaram
 
 local lexers = vis.lexers
 
@@ -7,7 +8,6 @@ local lexers = vis.lexers
 -- lexers.STYLE_DEFAULT = 'fore:#a5a5a5,back:#1c1c1c'
 -- lexers.STYLE_DEFAULT = 'fore:#a5a5a5,back:#00000000'
 lexers.STYLE_DEFAULT = 'fore:#959595'
--- lexers.STYLE_NOTHING = ''
 
 lexers.STYLE_CLASS = ''
 lexers.STYLE_COMMENT = 'fore:#8c8c8c,back:#262626'

@@ -1,7 +1,7 @@
 -- AsciiDoc LPeg lexer
+-- created 2025-04-21
+-- last modified 2025-04-21
 -- Dorai Sitaram
--- Created 2025-04-21
--- Last modified 2025-04-21
 
 local lexer = lexer
 local P = lpeg.P
