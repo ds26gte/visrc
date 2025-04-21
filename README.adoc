@@ -1,0 +1,10 @@
+= vis editor configuration
+
+== Installation
+
+Ensure `~/.config` exists. Then
+
+  cp -pru vis ~/.config
+
+You can perform the copy multiple times (say, after git pull) so
+you always have the latest files in `~/.config/vis`.
