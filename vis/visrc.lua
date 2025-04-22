@@ -1,4 +1,4 @@
--- last modified 2025-04-21
+-- last modified 2025-04-22
 -- created 2025-04-18
 
 require('vis')
@@ -11,7 +11,6 @@ require('plugins/vis-commentary')
 
 vis.comment_string.asciidoc = '//'
 vis.comment_string.pyret = '#'
-vis.comment_string.text = '//'
 
 require('plugins/vis-cursors')
 require('plugins/vis-ins-completion')
@@ -19,9 +18,7 @@ require('plugins/vis-copypasta')
 -- require('plugins/vis-surround')
 
 local qf = require('plugins/vis-quickfix')
-qf.grepprg = 'grep -HIns'
-
--- dictfiles.dirname = '/usr/share/dict/words'
+qf.grepprg = 'grep -HIns --exclude-dir={.git,node_modules}'
 
 vis.events.subscribe(vis.events.INIT, function()
   require('themes/quiet')
