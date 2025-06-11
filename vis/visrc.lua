@@ -1,4 +1,4 @@
--- last modified 2025-04-22
+-- last modified 2025-06-11
 -- created 2025-04-18
 
 require('vis')
@@ -21,8 +21,8 @@ local qf = require('plugins/vis-quickfix')
 qf.grepprg = 'grep -HIns --exclude-dir={.git,node_modules}'
 
 vis.events.subscribe(vis.events.INIT, function()
-  require('themes/quiet')
-  -- require('old-quiet')
+  require('themes/plain')
+  -- require('quiet')
   -- require('themes/solarized')
   -- require('plugins/oil6')
   -- require('plugins/vis-minimal-theme/minimal-clear')

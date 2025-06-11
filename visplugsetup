@@ -1,0 +1,59 @@
+# last modified 2025-06-10
+# created 2025-04-19
+
+packagedir=~/.config/vis/plugins
+
+mkdir -p $packagedir
+
+cd $packagedir
+
+function pullhosthook() {
+  local dir=$1
+  # if test "$dir" = 'vis-commentary'; then
+  #   sed -i \
+  #     -e 's/^-- escape all.*/\0\rcomment_string.adoc = "//"\r/' \
+  #     -e 's/^-- escape all.&/\0\rcomment_string.pyret = "#"\r/' \
+  #     init.lua
+  # fi
+  if test "$dir" = 'vis-commentary'; then
+    sed -i \
+      -e 's/^local \(comment_string\)/\1/' \
+      -e 's/comment_string/vis.\0/g' \
+      init.lua
+  fi
+  if test "$dir" = 'vis-ins-completion'; then
+    sed -i \
+      -e 's/\(dirname =\).*/\1 "\/usr\/share\/dict\/"/' \
+      -e 's/\(local syntax =\).*/\1 "words"/' \
+      complete-dict.lua
+  fi
+  if test "$dir" = 'vis-copypasta'; then
+    cp -p copypasta.lua init.lua
+  fi
+}
+
+function installplugin() {
+  local f=$1
+  fb=${f##*/}
+  if test -d $fb; then
+    echo -n 📦 $f ''
+    cd $fb
+    git checkout -- \*
+    git pull
+  else
+    git clone https://$f
+    cd $fb
+  fi
+  pullhosthook $fb
+  cd ..
+  echo ---------------------------
+}
+
+function installpluginlist() {
+  local L=$1
+  for f in $(grep -v '^\(//\|;\)' $L); do
+    installplugin $f
+  done
+}
+
+installpluginlist ~/src/visrc/visplugs.adoc
