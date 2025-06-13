@@ -20,7 +20,7 @@ lexers.STYLE_STRING = ''
 lexers.STYLE_TYPE = ''
 
 lexers.STYLE_COLOR_COLUMN = ''
-lexers.STYLE_CURSOR = 'fore:black,back:#888888'
+lexers.STYLE_CURSOR = 'fore:#dddddd,back:#0055ff'
 lexers.STYLE_CURSOR_LINE = 'fore:gray63,back:gray23'
 lexers.STYLE_CURSOR_PRIMARY = lexers.STYLE_CURSOR
 lexers.STYLE_INFO = ''

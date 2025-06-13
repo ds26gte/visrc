@@ -1,4 +1,4 @@
--- last modified 2025-06-11
+-- last modified 2025-06-12
 -- created 2025-04-18
 
 require('vis')
@@ -8,35 +8,29 @@ vis.ftdetect.filetypes.pyret =  {
 }
 
 require('plugins/vis-commentary')
-
-vis.comment_string.asciidoc = '//'
-vis.comment_string.pyret = '#'
-
+require('plugins/vis-copypasta')
 require('plugins/vis-cursors')
 require('plugins/vis-ins-completion')
-require('plugins/vis-copypasta')
--- require('plugins/vis-surround')
+require('plugins/vis-quickfix')
 
-local qf = require('plugins/vis-quickfix')
-qf.grepprg = 'grep -HIns --exclude-dir={.git,node_modules}'
+-- require('plugins/vis-surround')
 
 vis.events.subscribe(vis.events.INIT, function()
   require('themes/plain')
-  -- require('quiet')
-  -- require('themes/solarized')
+  -- require('plugins/darkest-space')
   -- require('plugins/oil6')
   -- require('plugins/vis-minimal-theme/minimal-clear')
-  -- require('plugins/darkest-space')
+  -- require('themes/solarized')
 end)
 
 vis.events.subscribe(vis.events.WIN_OPEN, function()
-  vis:command('set number')
+  vis.win.options.tabwidth = 2
   vis:command('set expandtab')
   vis:command('set ignorecase')
+  vis:command('set number')
   -- vis.win.options.expandtab = true
   -- vis.win.options.ignorecase = true
   -- vis.win.options.number = true
-  vis.win.options.tabwidth = 2
 end)
 
 vis:map(vis.modes.INSERT, 'jj', function()

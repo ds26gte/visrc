@@ -1,4 +1,4 @@
-# last modified 2025-06-10
+# last modified 2025-06-12
 # created 2025-04-19
 
 packagedir=~/.config/vis/plugins
@@ -9,17 +9,15 @@ cd $packagedir
 
 function pullhosthook() {
   local dir=$1
-  # if test "$dir" = 'vis-commentary'; then
-  #   sed -i \
-  #     -e 's/^-- escape all.*/\0\rcomment_string.adoc = "//"\r/' \
-  #     -e 's/^-- escape all.&/\0\rcomment_string.pyret = "#"\r/' \
-  #     init.lua
-  # fi
   if test "$dir" = 'vis-commentary'; then
     sed -i \
       -e 's/^local \(comment_string\)/\1/' \
       -e 's/comment_string/vis.\0/g' \
+      -e 's/^-- escape all/\nvis.comment_string.asciidoc = "\/\/"\nvis.comment_string.pyret = "#"\n\n\0/' \
       init.lua
+  fi
+  if test "$dir" = 'vis-copypasta'; then
+    cp -p copypasta.lua init.lua
   fi
   if test "$dir" = 'vis-ins-completion'; then
     sed -i \
@@ -27,8 +25,10 @@ function pullhosthook() {
       -e 's/\(local syntax =\).*/\1 "words"/' \
       complete-dict.lua
   fi
-  if test "$dir" = 'vis-copypasta'; then
-    cp -p copypasta.lua init.lua
+  if test "$dir" = 'vis-quickfix'; then
+    sed -i \
+      -e 's/\(grepprg =\).*/\1 "grep -HIns --exclude-dir={.git,node_modules}",/' \
+      init.lua
   fi
 }
 
